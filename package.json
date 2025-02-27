@@ -1,0 +1,14 @@
+{
+  "name": "jobportal",
+  "version": "1.0.0",
+  "description": "job portal project ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rijen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
