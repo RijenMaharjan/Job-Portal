@@ -4,17 +4,24 @@ const require = createRequire(import.meta.url);
 const colors = require("colors");
 import express from "express";
 import dotenv from "dotenv";
+import { connect } from "http2";
+import connectDB from "./config/db.js";
+import testRoutes from "./routes/testRoutes.js";
 
 //DOT ENV config
 dotenv.config();
 
+//mongodb connection
+connectDB();
+
 //rest object
 const app = express();
 
+//middlewares
+app.use(express.json());
+
 //route
-app.get("/", (req, res) => {
-  res.send("<h1>Welcome to JOB PORTAL</h1>");
-});
+app.use("/api/v1/test", testRoutes);
 
 //port
 const PORT = process.env.PORT || 8080;
