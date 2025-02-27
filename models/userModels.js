@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
+
 //schema
 const userSchema = new mongoose.Schema(
   {
@@ -16,9 +17,10 @@ const userSchema = new mongoose.Schema(
       unique: true,
       validate: validator.isEmail,
     },
-    passowrd: {
+    password: {
       type: String,
       required: [true, "passowrd is required"],
+      minlength: [6, "Password should be atleast 6 character"],
     },
     location: {
       type: String,

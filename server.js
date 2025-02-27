@@ -4,12 +4,16 @@ const require = createRequire(import.meta.url);
 const colors = require("colors");
 import express from "express";
 import dotenv from "dotenv";
+
 //files imports
 import cors from "cors";
 import morgan from "morgan";
 import { connect } from "http2";
 import connectDB from "./config/db.js";
+
+//Routes import
 import testRoutes from "./routes/testRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 //DOT ENV config
 dotenv.config();
@@ -27,6 +31,7 @@ app.use(morgan("dev"));
 
 //route
 app.use("/api/v1/test", testRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 //port
 const PORT = process.env.PORT || 8080;
