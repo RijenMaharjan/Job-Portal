@@ -1,9 +1,10 @@
 //Imports
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
+const colors = require("colors");
 import express from "express";
 import dotenv from "dotenv";
-const colors = require("colors");
+
 //DOT ENV config
 dotenv.config();
 
