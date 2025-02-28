@@ -3,12 +3,13 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const colors = require("colors");
 import express from "express";
+import "express-async-errors";
 import dotenv from "dotenv";
-
-//files imports
 import cors from "cors";
 import morgan from "morgan";
 import { connect } from "http2";
+
+//files imports
 import connectDB from "./config/db.js";
 
 //Routes import
