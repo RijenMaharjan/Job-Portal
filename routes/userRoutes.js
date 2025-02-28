@@ -11,4 +11,4 @@ const router = express.Router();
 //Update USER || PUT
 router.put("/update-user", userAuth, updateUserController);
 
-export default user;
+export default router;
