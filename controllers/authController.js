@@ -17,3 +17,29 @@ export const registerController = async (req, res, next) => {
     token,
   });
 };
+
+export const loginController = async (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    next("Please fill all fields.");
+  }
+  //find user by email
+  const user = await userModels.findOne({ email }).select("+password");
+  if (!user) {
+    next("Invalid Username or Password");
+  }
+
+  //compare password
+  const isMatch = await user.comparePassword(password);
+  if (!isMatch) {
+    next("Invalid Username or Password");
+  }
+  user.password = undefined;
+  const token = user.createJWT();
+  res.status(200).json({
+    success: true,
+    message: "Login successful",
+    user,
+    token,
+  });
+};
