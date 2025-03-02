@@ -19,3 +19,13 @@ export const getAllJobsController = async (req, res, next) => {
     jobs,
   });
 };
+
+//update job
+export const updateJobController = async (req, res, next) => {
+  const { id } = req.params;
+  const { company, position } = req.body;
+  //validation
+  if (!company || !position) {
+    next("Please provide all fields.");
+  }
+};
