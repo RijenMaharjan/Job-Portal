@@ -28,4 +28,20 @@ export const updateJobController = async (req, res, next) => {
   if (!company || !position) {
     next("Please provide all fields.");
   }
+  //find job
+  const job = await jobModels.findOne({ _id: id });
+  //validation
+  if (!job) {
+    next(`No jobs found with this id ${id}`);
+  }
+  // if (req.user.userId === job.createdBy.toString()) {
+  //   return;
+  //   next("You are not authorized to update this job");
+  // }
+  const updateJob = await jobModels.findOneAndUpdate({ _id: id }, req.body, {
+    new: true,
+    runValidators: true,
+  });
+  //res
+  res.status(200).json({ updateJob });
 };
