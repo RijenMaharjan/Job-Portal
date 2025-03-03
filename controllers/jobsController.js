@@ -34,10 +34,10 @@ export const updateJobController = async (req, res, next) => {
   if (!job) {
     next(`No jobs found with this id ${id}`);
   }
-  // if (req.user.userId === job.createdBy.toString()) {
-  //   return;
-  //   next("You are not authorized to update this job");
-  // }
+  if (!req.user.userId === job.createdBy.toString()) {
+    next("You are not authorized to update this job");
+    return;
+  }
   const updateJob = await jobModels.findOneAndUpdate({ _id: id }, req.body, {
     new: true,
     runValidators: true,
@@ -45,3 +45,6 @@ export const updateJobController = async (req, res, next) => {
   //res
   res.status(200).json({ updateJob });
 };
+
+//delete job
+export const deleteJobController = async (req, res, next) => {};
