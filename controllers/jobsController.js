@@ -1,5 +1,5 @@
 import jobModels from "../models/jobModels.js";
-
+import mongoose from "mongoose";
 //Create job
 export const createJobController = async (req, res, next) => {
   const { company, position } = req.body;
@@ -66,4 +66,23 @@ export const deleteJobController = async (req, res, next) => {
 };
 
 //jobs stats and filtter
-export const jobStatsController = async (req, res, next) => {};
+export const jobStatsController = async (req, res) => {
+  const stats = await jobModels.aggregate([
+    //search by  user jobs
+    {
+      $match: {
+        createdBy: new mongoose.Types.ObjectId(req.user.userId),
+      },
+    },
+    {
+      $group: {
+        _id: "$status",
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+  res.status(200).json({
+    totalJob: stats.length,
+    stats,
+  });
+};
