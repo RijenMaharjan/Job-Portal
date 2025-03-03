@@ -64,3 +64,6 @@ export const deleteJobController = async (req, res, next) => {
     message: "Success, job deleted",
   });
 };
+
+//jobs stats and filtter
+export const jobStatsController = async (req, res, next) => {};
