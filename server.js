@@ -9,10 +9,10 @@ import cors from "cors";
 import morgan from "morgan";
 import { connect } from "http2";
 
-//files imports
+//files IMPORTS
 import connectDB from "./config/db.js";
 
-//Routes import
+//ROUTES IMPORTS
 import testRoutes from "./routes/testRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
